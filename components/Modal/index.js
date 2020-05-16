@@ -20,10 +20,20 @@ const Modal = props => {
       <div className="modal opacity-0 pointer-events-none absolute w-full h-full top-0 left-0 flex items-center justify-center">
         <div
           onClick={() => toggleModal()}
-          className="modal-overlay absolute w-full h-full bg-black opacity-70 top-0 left-0 cursor-pointer"
+          className="modal-overlay absolute w-full h-full bg-black opacity-50 top-0 left-0 cursor-pointer"
         ></div>
-        <div className="absolute w-1/2 h-32 bg-white rounded-sm shadow-lg flex items-center justify-center text-2xl">
-          🚀
+        <div className="absolute w-90 h-90 bg-white rounded-sm shadow-lg  text-sm">
+          {props.data && props.data.length > 0
+            ? props.data.map((item, index) => (
+                <p key={index}>
+                  {item.login}
+                  <br></br>
+                  {item.avatar_url} <br></br>
+                  {item.html_url}
+                </p>
+              ))
+            : null}
+          aaaaaa
         </div>
       </div>
     </div>

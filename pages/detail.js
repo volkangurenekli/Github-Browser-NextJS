@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as githubActions from '../redux/actions/githubActions'
 import StackedCard from '../components/StackedCard'
+import Card from '../components/Card'
+import { GITHUB_LOGO } from '../constants'
 const Detail = props => {
   console.log('VOLKAN: props', props)
 
@@ -20,7 +22,23 @@ const Detail = props => {
         following={props.userData.following}
         following_url={props.userData.following_url}
         public_repos={props.userData.public_repos}
+        userFollowers={props.userFollowers}
+        userFollowing={props.userFollowing}
       />
+
+      <div className="flex flex-wrap">
+        {props.userRepos.length > 0
+          ? props.userRepos.map(repo => (
+              <Card
+                key={repo.id.toString()}
+                name={repo.name}
+                image={GITHUB_LOGO}
+                onClick={() => window.open(repo.svn_url)}
+                href={repo.svn_url}
+              />
+            ))
+          : null}
+      </div>
     </div>
   )
 }
