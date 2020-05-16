@@ -1,9 +1,10 @@
 import React from 'react'
-import Modal from '../Modal'
+import Modal from '../Modal/ant'
 import { NO_IMAGE } from '../../constants'
+
 const StackedCard = props => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 p-4">
       <img className="w-full" src={props.image || NO_IMAGE} alt="image" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{props.name}</div>
@@ -24,16 +25,12 @@ const StackedCard = props => {
         )}
 
         <p className="text-gray-700 text-base">
-          followers_url={props.followers_url}
-          <br />
-          following_url={props.following_url}
-          public_repos
+          Repositories: {props.public_repos}
         </p>
       </div>
       <div className="flex justify-around">
         <Modal data={props.userFollowers}>Followers: {props.followers}</Modal>
         <Modal data={props.userFollowing}>Following: {props.following}</Modal>
-        <Modal>Repositories: {props.public_repos}</Modal>
       </div>
     </div>
   )

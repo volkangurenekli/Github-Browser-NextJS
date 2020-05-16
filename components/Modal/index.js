@@ -1,4 +1,6 @@
 import React from 'react'
+import { GITHUB_LOGO } from '../../constants'
+import Card from '../Card'
 
 const Modal = props => {
   const toggleModal = () => {
@@ -6,7 +8,6 @@ const Modal = props => {
     modal.classList.toggle('opacity-0')
     modal.classList.toggle('pointer-events-none')
   }
-
   return (
     <div>
       <div className="max-w-md ">
@@ -22,18 +23,19 @@ const Modal = props => {
           onClick={() => toggleModal()}
           className="modal-overlay absolute w-full h-full bg-black opacity-50 top-0 left-0 cursor-pointer"
         ></div>
-        <div className="absolute w-90 h-90 bg-white rounded-sm shadow-lg  text-sm">
-          {props.data && props.data.length > 0
-            ? props.data.map((item, index) => (
-                <p key={index}>
-                  {item.login}
-                  <br></br>
-                  {item.avatar_url} <br></br>
-                  {item.html_url}
-                </p>
-              ))
-            : null}
-          aaaaaa
+        <div className="absolute w-190 h-190 bg-white rounded-sm shadow-lg  text-sm">
+          <div className="flex flex-wrap">
+            {props.data && props.data.length > 0
+              ? props.data.map((item, index) => (
+                  <Card
+                    key={index}
+                    name={item.login}
+                    image={item.avatar_url || GITHUB_LOGO}
+                    onClick={() => window.open(item.html_url)}
+                  />
+                ))
+              : null}
+          </div>
         </div>
       </div>
     </div>

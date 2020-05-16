@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import Head from 'next/head'
-import Form from '../components/Form'
+import Link from 'next/link'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as githubActions from '../redux/actions/githubActions'
 import Card from '../components/Card'
+import Head from '../components/Head'
+import Form from '../components/Form'
+import Main from '../components/Main'
+import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
 
 function Home(props) {
   const [value, setValue] = useState('')
 
   useEffect(() => {
-    props.actions.getUsers('volkan')
+    //  props.actions.getUsers('volkan')
   }, [])
 
   const _onChange = e => {
@@ -20,6 +24,7 @@ function Home(props) {
 
   const _onSubmit = () => {
     props.actions.getUsers(value)
+    setValue('')
   }
 
   const _onClick = item => {
@@ -29,43 +34,26 @@ function Home(props) {
     props.actions.getUserRepos(item)
   }
   return (
-    <div className="container">
-      <Head>
-        <title>GitHub Browser</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <img src="logo.png" alt="Github Browser" />
-        <h1 className="title">Welcome to GitHub Browser</h1>
-      </main>
-
-      <Form onChange={e => _onChange(e)} onClick={_onSubmit} />
-      <div className="flex flex-wrap">
+    <div className="w-full">
+      <Navbar />
+      <Head />
+      <Main />
+      <Form value={value} onChange={e => _onChange(e)} onClick={_onSubmit} />
+      <div className="flex flex-wrap m-4 p-10">
         {props.users.length > 0
-          ? props.users.map(user => (
-              <Card
-                key={user.id.toString()}
-                name={user.login}
-                image={user.avatar_url}
-                onClick={() => _onClick(user.login)}
-                href="/detail"
-              />
+          ? props.users.map((user, index) => (
+              <Link href="detail" key={index}>
+                <Card
+                  name={user.login}
+                  image={user.avatar_url}
+                  onClick={() => _onClick(user.login)}
+                />
+              </Link>
             ))
           : null}
       </div>
 
-      <footer>
-        <br></br> <br></br>
-        <br></br>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
