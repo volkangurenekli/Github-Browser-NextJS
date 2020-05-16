@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function Form({ onChange, onClick }) {
   return (
@@ -20,7 +20,7 @@ function Form({ onChange, onClick }) {
         </button>
       </div>
     </form>
-  );
+  )
 }
 
-export default Form;
+export default Form

@@ -1,4 +1,7 @@
 export default {
   users: [],
-  user: {},
-};
+  userData: {},
+  userFollowers: {},
+  userFollowing: {},
+  userRepos: {},
+}
