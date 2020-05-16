@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-function Card(props) {
+const Card = props => {
   return (
     <Link href={props.href}>
       <div

@@ -1,13 +1,28 @@
 import React from 'react'
-
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as githubActions from '../redux/actions/githubActions'
-
+import StackedCard from '../components/StackedCard'
 const Detail = props => {
   console.log('VOLKAN: props', props)
 
-  return <div>aa</div>
+  return (
+    <div>
+      <StackedCard
+        image={props.userData.avatar_url}
+        name={props.userData.name}
+        company={props.userData.company}
+        bio={props.userData.bio}
+        created_at={props.userData.created_at}
+        email={props.userData.email}
+        followers={props.userData.followers}
+        followers_url={props.userData.followers_url}
+        following={props.userData.following}
+        following_url={props.userData.following_url}
+        public_repos={props.userData.public_repos}
+      />
+    </div>
+  )
 }
 
 const mapStateToProps = state => ({
@@ -15,7 +30,7 @@ const mapStateToProps = state => ({
   userData: state.userDataReducer,
   userFollowing: state.userFollowingReducer,
   userFollowers: state.userFollowersReducer,
-  userRepos: state.userRepoReducer,
+  userRepos: state.userReposReducer,
 })
 
 const mapDispacthToProps = dispatch => {

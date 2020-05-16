@@ -13,23 +13,21 @@ function Home(props) {
     props.actions.getUsers('volkan')
   }, [])
 
-  const _onChange = (e) => {
+  const _onChange = e => {
     setValue(e.target.value)
     e.preventDefault()
   }
 
   const _onSubmit = () => {
     props.actions.getUsers(value)
-    console.log(props)
   }
 
-  const _onClick = (item) => {
+  const _onClick = item => {
     props.actions.getUserData(item)
     props.actions.getUserFollowing(item)
     props.actions.getUserFollowers(item)
     props.actions.getUserRepos(item)
   }
-
   return (
     <div className="container">
       <Head>
@@ -41,10 +39,10 @@ function Home(props) {
         <h1 className="title">Welcome to GitHub Browser</h1>
       </main>
 
-      <Form onChange={(e) => _onChange(e)} onClick={_onSubmit} />
+      <Form onChange={e => _onChange(e)} onClick={_onSubmit} />
       <div className="flex flex-wrap">
         {props.users.length > 0
-          ? props.users.map((user) => (
+          ? props.users.map(user => (
               <Card
                 key={user.id.toString()}
                 name={user.login}
@@ -72,15 +70,15 @@ function Home(props) {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   users: state.getUsersReducer,
   userData: state.userDataReducer,
   userFollowing: state.userFollowingReducer,
   userFollowers: state.userFollowersReducer,
-  userRepos: state.userRepoReducer,
+  userRepos: state.userReposReducer,
 })
 
-const mapDispacthToProps = (dispatch) => {
+const mapDispacthToProps = dispatch => {
   return {
     actions: {
       getUsers: bindActionCreators(githubActions.getUsers, dispatch),
@@ -97,4 +95,7 @@ const mapDispacthToProps = (dispatch) => {
     },
   }
 }
-export default connect(mapStateToProps, mapDispacthToProps)(Home)
+export default connect(
+  mapStateToProps,
+  mapDispacthToProps
+)(Home)

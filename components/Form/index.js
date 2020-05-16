@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Form({ onChange, onClick }) {
+const Form = ({ onChange, onClick }) => {
   return (
     <form className="w-full max-w-sm">
       <div className="flex items-center border-b border-b-2 border-blue-500 py-2">
