@@ -1,30 +1,34 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as githubActions from '../redux/actions/githubActions'
 import Card from '../components/Card'
 import Head from '../components/Head'
-import Form from '../components/Form'
+import SearchBar from '../components/SearchBar'
 import Main from '../components/Main'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import _ from 'lodash'
 
 const Home = props => {
   const [value, setValue] = useState('')
+  const [searchQuery, setSearchQuery] = useState({})
 
-  useEffect(() => {
-    //  props.actions.getUsers('volkan')
-  }, [])
-
-  const _onChange = e => {
-    setValue(e.target.value)
-    e.preventDefault()
+  const _onChange = value => {
+    setValue(value)
+    const search = _.debounce(sendQuery, 500)
+    setSearchQuery(prevSearch => {
+      if (prevSearch.cancel) {
+        prevSearch.cancel()
+      }
+      return search
+    })
+    search(value)
   }
 
-  const _onSubmit = () => {
+  const sendQuery = value => {
     props.actions.getUsers(value)
-    setValue('')
   }
 
   const _onClick = item => {
@@ -38,7 +42,11 @@ const Home = props => {
       <Navbar />
       <Head />
       <Main />
-      <Form value={value} onChange={e => _onChange(e)} onClick={_onSubmit} />
+      <SearchBar
+        value={value}
+        onChange={e => _onChange(e.target.value)}
+        onSearch={() => sendQuery(value)}
+      />
       <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2">
         {props.users.length > 0
           ? props.users.map((user, index) => (

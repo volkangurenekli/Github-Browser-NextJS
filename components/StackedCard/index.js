@@ -4,7 +4,7 @@ import { NO_IMAGE } from '../../constants'
 
 const StackedCard = props => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 p-4 ">
+    <div className="max-w-sm rounded overflow-hidden shadow-lg m-4 p-4 mt-12">
       <img className="w-full" src={props.image || NO_IMAGE} alt="image" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{props.name}</div>
