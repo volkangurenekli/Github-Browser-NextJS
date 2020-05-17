@@ -10,7 +10,7 @@ import Main from '../components/Main'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
-function Home(props) {
+const Home = props => {
   const [value, setValue] = useState('')
 
   useEffect(() => {
@@ -34,12 +34,12 @@ function Home(props) {
     props.actions.getUserRepos(item)
   }
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Navbar />
       <Head />
       <Main />
       <Form value={value} onChange={e => _onChange(e)} onClick={_onSubmit} />
-      <div className="flex flex-wrap m-4 p-10">
+      <div className="flex-1 text-gray-700 text-center px-4 py-2 m-2">
         {props.users.length > 0
           ? props.users.map((user, index) => (
               <Link href="detail" key={index}>
@@ -52,7 +52,6 @@ function Home(props) {
             ))
           : null}
       </div>
-
       <Footer />
     </div>
   )

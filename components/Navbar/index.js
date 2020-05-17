@@ -2,10 +2,10 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-blue-600 p-1">
+    <nav className="flex items-center justify-between flex-wrap bg-blue-600 pl-8">
       <a
         href="/"
-        className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+        className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
       >
         <div className="flex items-center flex-shrink-0 text-white ">
           <svg
