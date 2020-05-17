@@ -1,14 +1,10 @@
-import * as actionTypes from '../actions/actionTypes'
-import initialState from './initialState'
+import { createReducer } from '@reduxjs/toolkit'
 
-export default function userFollowersReducer(
-  state = initialState.userFollowers,
-  action
-) {
-  switch (action.type) {
-    case actionTypes.USER_FOLLOWERS:
-      return action.payload
-    default:
-      return state
+const userFollowersReducer = createReducer(
+  { userFollowers: [] },
+  {
+    USER_FOLLOWERS: (state, action) => action.payload,
   }
-}
+)
+
+export default userFollowersReducer

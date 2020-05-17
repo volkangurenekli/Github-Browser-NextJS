@@ -1,5 +1,0 @@
-export const GET_USERS = 'GET_USERS'
-export const USER_DATA = 'USER_DATA'
-export const USER_FOLLOWERS = 'USER_FOLLOWERS'
-export const USER_FOLLOWING = 'USER_FOLLOWING'
-export const USER_REPOS = 'USER_REPOS'

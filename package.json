@@ -21,9 +21,6 @@
     "react-dom": "16.13.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-logger": "^3.0.6",
-    "redux-persist": "^6.0.0",
     "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
@@ -34,6 +31,9 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "prettier": "1.18.2",
-    "webpack": "^4.41.1"
+    "webpack": "^4.43.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2"
   }
 }

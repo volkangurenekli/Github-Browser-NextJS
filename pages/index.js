@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from '@reduxjs/toolkit'
 import * as githubActions from '../redux/actions/githubActions'
 import Card from '../components/Card'
 import Head from '../components/Head'
@@ -67,10 +68,6 @@ const Home = props => {
 
 const mapStateToProps = state => ({
   users: state.getUsersReducer,
-  userData: state.userDataReducer,
-  userFollowing: state.userFollowingReducer,
-  userFollowers: state.userFollowersReducer,
-  userRepos: state.userReposReducer,
 })
 
 const mapDispacthToProps = dispatch => {

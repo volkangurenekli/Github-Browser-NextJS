@@ -1,11 +1,10 @@
-import * as actionTypes from '../actions/actionTypes'
-import initialState from './initialState'
+import { createReducer } from '@reduxjs/toolkit'
 
-export default function getUsersReducer(state = initialState.users, action) {
-  switch (action.type) {
-    case actionTypes.GET_USERS:
-      return action.payload
-    default:
-      return state
+const getUsersReducer = createReducer(
+  { users: [] },
+  {
+    GET_USERS: (state, action) => action.payload,
   }
-}
+)
+
+export default getUsersReducer

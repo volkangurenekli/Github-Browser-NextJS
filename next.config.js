@@ -1,9 +1,6 @@
 const webpack = require('webpack')
 
 module.exports = {
-  devIndicators: {
-    autoPrerender: false,
-  },
   webpack: (config, { dev }) => {
     if (dev) {
       config.module.rules.push({

@@ -1,19 +1,22 @@
 import React from 'react'
-import App from 'next/app'
 import '../css/tailwind.css'
 import 'antd/dist/antd.css'
 import { Provider } from 'react-redux'
-import configureStore from '../redux/store/store'
-const store = configureStore()
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
-    return (
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-    )
-  }
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import rootReducer from '../redux/reducers'
+import thunk from 'redux-thunk'
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware(thunk),
+})
+
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
 
 export default MyApp
